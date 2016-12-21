@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://liuxiaohui.net/"/>
-  <updated>2016-07-28T09:28:04.064Z</updated>
+  <updated>2016-12-21T02:08:46.070Z</updated>
   <id>http://liuxiaohui.net/</id>
   
   <author>
@@ -16,11 +16,43 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>How to install zcash cpu miner on CentOS6</title>
+    <link href="http://liuxiaohui.net/2016/12/21/How-to-install-zcash-cpu-miner-on-CentOS6.html"/>
+    <id>http://liuxiaohui.net/2016/12/21/How-to-install-zcash-cpu-miner-on-CentOS6.html</id>
+    <published>2016-12-21T01:15:50.000Z</published>
+    <updated>2016-12-21T02:08:46.070Z</updated>
+    
+    <content type="html"><![CDATA[<p>目前，Zcash钱包只有Linux版本，没有Windows版本；而能拿来开箱即用的Zcash Miner，却只有Windows版本，没有Linux版本，于是，如果想在Linux上挖矿，就只好自己编译了。</p>
+<h3 id="升级编译器"><a href="#升级编译器" class="headerlink" title="升级编译器"></a>升级编译器</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># wget http://people.centos.org/tru/devtools-2/devtools-2.repo -O /etc/yum.repos.d/devtools-2.repo</span></div><div class="line"><span class="comment"># yum install devtoolset-2-gcc devtoolset-2-binutils devtoolset-2-gcc-c++ devtoolset-2-gcc-gfortran cmake libcxx</span></div><div class="line"><span class="comment"># scl enable devtoolset-2 bash</span></div><div class="line"><span class="comment"># source /opt/rh/devtoolset-2/enable</span></div></pre></td></tr></table></figure>
+<h3 id="安装Boost"><a href="#安装Boost" class="headerlink" title="安装Boost"></a>安装Boost</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># wget http://downloads.sourceforge.net/project/boost/boost/1.62.0/boost_1_62_0.tar.gz</span></div><div class="line"><span class="comment"># tar -xzvf boost_1_62_0.tar.gz</span></div><div class="line"><span class="comment"># cd boost_1_62_0</span></div><div class="line"><span class="comment"># ./bootstrap.sh</span></div><div class="line"><span class="comment"># ./b2</span></div><div class="line"><span class="comment"># ./b2 install</span></div></pre></td></tr></table></figure>
+<h3 id="安装Miner"><a href="#安装Miner" class="headerlink" title="安装Miner"></a>安装Miner</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># git clone -b Linux https://github.com/nicehash/nheqminer.git</span></div><div class="line"><span class="comment"># cd nheqminer/cpu_xenoncat/Linux/asm/</span></div><div class="line"><span class="comment"># sh assemble.sh</span></div><div class="line"><span class="comment"># cd ../../../Linux_cmake/nheqminer_cpu_xenoncat</span></div><div class="line"><span class="comment"># cmake . -DBOOST_ROOT=/opt/boost -DBOOST_LIBRARYDIR=/opt/boost/libs</span></div><div class="line"><span class="comment"># make -j $(nproc)</span></div></pre></td></tr></table></figure>
+<h3 id="运行Miner"><a href="#运行Miner" class="headerlink" title="运行Miner"></a>运行Miner</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># ~/nheqminer/Linux_cmake/nheqminer_cpu_xenoncat/nheqminer_cpu_xenoncat -l YOUR_MINE_POOL_URL -u YOUR_MINE_USERNAME -p YOUR_MINE_PASSWORD</span></div></pre></td></tr></table></figure>
+<p>因为是动态编译，所以，如果要在其他机器上运行这个Miner，需要同时拷贝二进制文件，和依赖的动态库文件：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># scp ~/nheqminer/Linux_cmake/nheqminer_cpu_xenoncat/nheqminer_cpu_xenoncat YOUR_REMOTE_HOST:~/</span></div><div class="line"><span class="comment"># scp -r /usr/local/lib YOUR_REMOTE_HOST:/usr/local/lib</span></div></pre></td></tr></table></figure></p>
+<p>参考链接：<a href="https://github.com/nicehash/nheqminer/issues/173" target="_blank" rel="external">https://github.com/nicehash/nheqminer/issues/173</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;目前，Zcash钱包只有Linux版本，没有Windows版本；而能拿来开箱即用的Zcash Miner，却只有Windows版本，没有Linux版本，于是，如果想在Linux上挖矿，就只好自己编译了。&lt;/p&gt;
+&lt;h3 id=&quot;升级编译器&quot;&gt;&lt;a href=&quot;#升级编译器&quot;
+    
+    </summary>
+    
+      <category term="Tech" scheme="http://liuxiaohui.net/categories/Tech/"/>
+    
+    
+      <category term="zcash" scheme="http://liuxiaohui.net/tags/zcash/"/>
+    
+      <category term="miner" scheme="http://liuxiaohui.net/tags/miner/"/>
+    
+  </entry>
+  
+  <entry>
     <title>让requests在服务器上使用Socks代理</title>
     <link href="http://liuxiaohui.net/2016/07/27/Make-the-python-requests-work-via-socks-proxy-on-CentOS-server.html"/>
     <id>http://liuxiaohui.net/2016/07/27/Make-the-python-requests-work-via-socks-proxy-on-CentOS-server.html</id>
     <published>2016-07-27T08:41:03.000Z</published>
-    <updated>2016-07-28T09:28:04.064Z</updated>
+    <updated>2016-07-28T09:28:04.000Z</updated>
     
     <content type="html"><![CDATA[<p>让爬虫脚本拥有翻墙能力是很重要的:)</p>
 <h2 id="在CentOS上安装Shadowsocks"><a href="#在CentOS上安装Shadowsocks" class="headerlink" title="在CentOS上安装Shadowsocks"></a>在CentOS上安装Shadowsocks</h2><h3 id="系统环境"><a href="#系统环境" class="headerlink" title="系统环境"></a>系统环境</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">$ cat /etc/issue</div><div class="line">CentOS release 6.6 (Final)</div><div class="line">Kernel \r on an \m</div><div class="line"></div><div class="line">$ python --version</div><div class="line">Python 3.5.2</div><div class="line"></div><div class="line"><span class="variable">$python</span> --version</div><div class="line">pip 8.1.2 from /usr/<span class="built_in">local</span>/lib/python3.5/site-packages (python 3.5)</div></pre></td></tr></table></figure>
@@ -53,10 +85,10 @@
   
   <entry>
     <title>Hello World</title>
-    <link href="http://liuxiaohui.net/2016/07/27/hello-world.html"/>
-    <id>http://liuxiaohui.net/2016/07/27/hello-world.html</id>
-    <published>2016-07-27T05:14:39.239Z</published>
-    <updated>2016-07-27T05:14:39.240Z</updated>
+    <link href="http://liuxiaohui.net/2016/06/06/hello-world.html"/>
+    <id>http://liuxiaohui.net/2016/06/06/hello-world.html</id>
+    <published>2016-06-06T08:41:03.000Z</published>
+    <updated>2016-12-21T02:07:42.861Z</updated>
     
     <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
 <h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
@@ -75,6 +107,10 @@
     
     </summary>
     
+      <category term="Tech" scheme="http://liuxiaohui.net/categories/Tech/"/>
+    
+    
+      <category term="Hexo" scheme="http://liuxiaohui.net/tags/Hexo/"/>
     
   </entry>
   

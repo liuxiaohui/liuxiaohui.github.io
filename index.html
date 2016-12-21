@@ -280,6 +280,141 @@
             
               
                 
+                <a class="post-title-link" href="/2016/12/21/How-to-install-zcash-cpu-miner-on-CentOS6.html" itemprop="url">
+                  How to install zcash cpu miner on CentOS6
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-21T09:15:50+08:00" content="2016-12-21">
+              2016-12-21
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Tech/" itemprop="url" rel="index">
+                    <span itemprop="name">Tech</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/12/21/How-to-install-zcash-cpu-miner-on-CentOS6.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/21/How-to-install-zcash-cpu-miner-on-CentOS6.html" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/12/21/How-to-install-zcash-cpu-miner-on-CentOS6.html" class="leancloud_visitors" data-flag-title="How to install zcash cpu miner on CentOS6">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>目前，Zcash钱包只有Linux版本，没有Windows版本；而能拿来开箱即用的Zcash Miner，却只有Windows版本，没有Linux版本，于是，如果想在Linux上挖矿，就只好自己编译了。</p>
+<h3 id="升级编译器"><a href="#升级编译器" class="headerlink" title="升级编译器"></a>升级编译器</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># wget http://people.centos.org/tru/devtools-2/devtools-2.repo -O /etc/yum.repos.d/devtools-2.repo</span></div><div class="line"><span class="comment"># yum install devtoolset-2-gcc devtoolset-2-binutils devtoolset-2-gcc-c++ devtoolset-2-gcc-gfortran cmake libcxx</span></div><div class="line"><span class="comment"># scl enable devtoolset-2 bash</span></div><div class="line"><span class="comment"># source /opt/rh/devtoolset-2/enable</span></div></pre></td></tr></table></figure>
+<h3 id="安装Boost"><a href="#安装Boost" class="headerlink" title="安装Boost"></a>安装Boost</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># wget http://downloads.sourceforge.net/project/boost/boost/1.62.0/boost_1_62_0.tar.gz</span></div><div class="line"><span class="comment"># tar -xzvf boost_1_62_0.tar.gz</span></div><div class="line"><span class="comment"># cd boost_1_62_0</span></div><div class="line"><span class="comment"># ./bootstrap.sh</span></div><div class="line"><span class="comment"># ./b2</span></div><div class="line"><span class="comment"># ./b2 install</span></div></pre></td></tr></table></figure>
+<h3 id="安装Miner"><a href="#安装Miner" class="headerlink" title="安装Miner"></a>安装Miner</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># git clone -b Linux https://github.com/nicehash/nheqminer.git</span></div><div class="line"><span class="comment"># cd nheqminer/cpu_xenoncat/Linux/asm/</span></div><div class="line"><span class="comment"># sh assemble.sh</span></div><div class="line"><span class="comment"># cd ../../../Linux_cmake/nheqminer_cpu_xenoncat</span></div><div class="line"><span class="comment"># cmake . -DBOOST_ROOT=/opt/boost -DBOOST_LIBRARYDIR=/opt/boost/libs</span></div><div class="line"><span class="comment"># make -j $(nproc)</span></div></pre></td></tr></table></figure>
+<h3 id="运行Miner"><a href="#运行Miner" class="headerlink" title="运行Miner"></a>运行Miner</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># ~/nheqminer/Linux_cmake/nheqminer_cpu_xenoncat/nheqminer_cpu_xenoncat -l YOUR_MINE_POOL_URL -u YOUR_MINE_USERNAME -p YOUR_MINE_PASSWORD</span></div></pre></td></tr></table></figure>
+<p>因为是动态编译，所以，如果要在其他机器上运行这个Miner，需要同时拷贝二进制文件，和依赖的动态库文件：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># scp ~/nheqminer/Linux_cmake/nheqminer_cpu_xenoncat/nheqminer_cpu_xenoncat YOUR_REMOTE_HOST:~/</span></div><div class="line"><span class="comment"># scp -r /usr/local/lib YOUR_REMOTE_HOST:/usr/local/lib</span></div></pre></td></tr></table></figure></p>
+<p>参考链接：<a href="https://github.com/nicehash/nheqminer/issues/173" target="_blank" rel="external">https://github.com/nicehash/nheqminer/issues/173</a></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/07/27/Make-the-python-requests-work-via-socks-proxy-on-CentOS-server.html" itemprop="url">
                   让requests在服务器上使用Socks代理
                 </a>
@@ -419,7 +554,7 @@
             
               
                 
-                <a class="post-title-link" href="/2016/07/27/hello-world.html" itemprop="url">
+                <a class="post-title-link" href="/2016/06/06/hello-world.html" itemprop="url">
                   Hello World
                 </a>
               
@@ -433,19 +568,38 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-07-27T13:14:39+08:00" content="2016-07-27">
-              2016-07-27
+            <time itemprop="dateCreated" datetime="2016-06-06T16:41:03+08:00" content="2016-06-06">
+              2016-06-06
             </time>
           </span>
 
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Tech/" itemprop="url" rel="index">
+                    <span itemprop="name">Tech</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
           
 
           
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/07/27/hello-world.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/27/hello-world.html" itemprop="commentsCount"></span>
+                <a href="/2016/06/06/hello-world.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/06/hello-world.html" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -455,7 +609,7 @@
 
           
           
-             <span id="/2016/07/27/hello-world.html" class="leancloud_visitors" data-flag-title="Hello World">
+             <span id="/2016/06/06/hello-world.html" class="leancloud_visitors" data-flag-title="Hello World">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -557,7 +711,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">2</span>
+              <span class="site-state-item-count">3</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -574,7 +728,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">5</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
