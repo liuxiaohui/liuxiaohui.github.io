@@ -94,7 +94,7 @@
 <meta property="og:site_name" content="无远弗届">
 <meta property="og:description" content="让爬虫脚本拥有翻墙能力是很重要的:)
 在CentOS上安装Shadowsocks系统环境123456789$ cat /etc/issueCentOS release 6.6 (Final)Kernel \r on an \m$ python --versionPython 3.5.2$ pip --versionpip 8.1.2 from /usr/local/lib/python3.5/si">
-<meta property="og:updated_time" content="2016-12-28T06:09:37.499Z">
+<meta property="og:updated_time" content="2016-12-28T08:27:08.963Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Make the python requests work via socks proxy on CentOS server">
 <meta name="twitter:description" content="让爬虫脚本拥有翻墙能力是很重要的:)
@@ -190,16 +190,6 @@
               <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
             
             分类
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
-            
-            关于
           </a>
         </li>
       
@@ -372,6 +362,7 @@
         <p>让爬虫脚本拥有翻墙能力是很重要的:)</p>
 <h2 id="在CentOS上安装Shadowsocks"><a href="#在CentOS上安装Shadowsocks" class="headerlink" title="在CentOS上安装Shadowsocks"></a>在CentOS上安装Shadowsocks</h2><h3 id="系统环境"><a href="#系统环境" class="headerlink" title="系统环境"></a>系统环境</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">$ cat /etc/issue</div><div class="line">CentOS release 6.6 (Final)</div><div class="line">Kernel \r on an \m</div><div class="line"></div><div class="line">$ python --version</div><div class="line">Python 3.5.2</div><div class="line"></div><div class="line">$ pip --version</div><div class="line">pip 8.1.2 from /usr/<span class="built_in">local</span>/lib/python3.5/site-packages (python 3.5)</div></pre></td></tr></table></figure>
 <h3 id="通过pip安装ShadowSocks"><a href="#通过pip安装ShadowSocks" class="headerlink" title="通过pip安装ShadowSocks"></a>通过pip安装ShadowSocks</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">$ pip install shadowsocks</div><div class="line">Collecting shadowsocks</div><div class="line">  Using cached shadowsocks-2.8.2.tar.gz</div><div class="line">Building wheels <span class="keyword">for</span> collected packages: shadowsocks</div><div class="line">  Running setup.py bdist_wheel <span class="keyword">for</span> shadowsocks ... <span class="keyword">done</span></div><div class="line">  Stored <span class="keyword">in</span> directory: /root/.cache/pip/wheels/c9/d8/ff/5425932823af361970658e9421b4d53ac50b08dcbe6fd41e5f</div><div class="line">Successfully built shadowsocks</div><div class="line">Installing collected packages: shadowsocks</div><div class="line">Successfully installed shadowsocks-2.8.2</div></pre></td></tr></table></figure>
+<a id="more"></a> 
 <h3 id="创建配置文件-etc-shadowsocks-json"><a href="#创建配置文件-etc-shadowsocks-json" class="headerlink" title="创建配置文件/etc/shadowsocks.json"></a>创建配置文件/etc/shadowsocks.json</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">$ cat &lt;&lt;EOF &gt; /etc/shadowsocks.json</div><div class="line">&#123;</div><div class="line">     <span class="string">"server"</span>:<span class="string">"your_server_ip"</span>,      <span class="comment">#ss服务器IP</span></div><div class="line">     <span class="string">"server_port"</span>:your_server_port, <span class="comment">#服务器端口</span></div><div class="line">     <span class="string">"local_address"</span>: <span class="string">"127.0.0.1"</span>,   <span class="comment">#本地IP</span></div><div class="line">     <span class="string">"local_port"</span>:1080,              <span class="comment">#本地端口</span></div><div class="line">     <span class="string">"password"</span>:<span class="string">"your_server_passwd"</span>,<span class="comment">#连接ss密码</span></div><div class="line">     <span class="string">"timeout"</span>:300,                  <span class="comment">#等待超时</span></div><div class="line">     <span class="string">"method"</span>:<span class="string">"aes-256-cfb"</span>,         <span class="comment">#加密方式</span></div><div class="line">     <span class="string">"fast_open"</span>: <span class="literal">false</span>,             <span class="comment">#true或false。如果你的服务器Linux内核在3.7+，可以开启fast_open以降低延迟。开启方法：echo 3 &gt; /proc/sys/net/ipv4/tcp_fastopen 开启之后，将fast_open的配置设置为 true 即可</span></div><div class="line">     <span class="string">"workers"</span>: 1                    <span class="comment"># 工作线程数</span></div><div class="line">&#125;</div><div class="line">EOF</div></pre></td></tr></table></figure>
 <h3 id="启动ShadowSocks客户端"><a href="#启动ShadowSocks客户端" class="headerlink" title="启动ShadowSocks客户端"></a>启动ShadowSocks客户端</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ nohup sslocal -c /etc/shadowsocks.json /dev/null 2&gt;&amp;1 &amp;</div></pre></td></tr></table></figure>
 <h3 id="将Shadowsocks客户端加入开机自启动"><a href="#将Shadowsocks客户端加入开机自启动" class="headerlink" title="将Shadowsocks客户端加入开机自启动"></a>将Shadowsocks客户端加入开机自启动</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">echo</span> <span class="string">"nohup sslocal -c /etc/shadowsocks.json /dev/null 2&gt;&amp;1 &amp;"</span> &gt;&gt; /etc/rc.local</div></pre></td></tr></table></figure>
@@ -574,6 +565,15 @@
                     <i class="fa fa-fw fa-weibo"></i>
                   
                   Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.douban.com/people/liuxiaohui" target="_blank" title="Douban">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Douban
                 </a>
               </span>
             

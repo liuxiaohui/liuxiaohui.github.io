@@ -94,7 +94,7 @@
 <meta property="og:site_name" content="无远弗届">
 <meta property="og:description" content="目前，Zcash钱包只有Linux版本，没有Windows版本；而能拿来开箱即用的Zcash Miner，却只有Windows版本，没有Linux版本，于是，如果想在Linux上挖矿，就只好自己编译了。
 升级编译器1234$ wget http://people.centos.org/tru/devtools-2/devtools-2.repo -O /etc/yum.repos.d/devtoo">
-<meta property="og:updated_time" content="2016-12-28T01:21:21.604Z">
+<meta property="og:updated_time" content="2016-12-28T08:25:57.462Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="How to install zcash cpu miner on CentOS6">
 <meta name="twitter:description" content="目前，Zcash钱包只有Linux版本，没有Windows版本；而能拿来开箱即用的Zcash Miner，却只有Windows版本，没有Linux版本，于是，如果想在Linux上挖矿，就只好自己编译了。
@@ -190,16 +190,6 @@
               <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
             
             分类
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
-            
-            关于
           </a>
         </li>
       
@@ -373,6 +363,7 @@
 <h3 id="升级编译器"><a href="#升级编译器" class="headerlink" title="升级编译器"></a>升级编译器</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ wget http://people.centos.org/tru/devtools-2/devtools-2.repo -O /etc/yum.repos.d/devtools-2.repo</div><div class="line">$ yum install devtoolset-2-gcc devtoolset-2-binutils devtoolset-2-gcc-c++ devtoolset-2-gcc-gfortran cmake libcxx</div><div class="line">$ scl <span class="built_in">enable</span> devtoolset-2 bash</div><div class="line">$ <span class="built_in">source</span> /opt/rh/devtoolset-2/<span class="built_in">enable</span></div></pre></td></tr></table></figure>
 <h3 id="安装Boost"><a href="#安装Boost" class="headerlink" title="安装Boost"></a>安装Boost</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$ wget http://downloads.sourceforge.net/project/boost/boost/1.62.0/boost_1_62_0.tar.gz</div><div class="line">$ tar -xzvf boost_1_62_0.tar.gz</div><div class="line">$ <span class="built_in">cd</span> boost_1_62_0</div><div class="line">$ ./bootstrap.sh</div><div class="line">$ ./b2</div><div class="line">$ ./b2 install</div></pre></td></tr></table></figure>
 <h3 id="安装Miner"><a href="#安装Miner" class="headerlink" title="安装Miner"></a>安装Miner</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$ git <span class="built_in">clone</span> -b Linux https://github.com/nicehash/nheqminer.git</div><div class="line">$ <span class="built_in">cd</span> nheqminer/cpu_xenoncat/Linux/asm/</div><div class="line">$ sh assemble.sh</div><div class="line">$ <span class="built_in">cd</span> ../../../Linux_cmake/nheqminer_cpu_xenoncat</div><div class="line">$ cmake .</div><div class="line">$ make -j $(nproc)</div></pre></td></tr></table></figure>
+<a id="more"></a> 
 <h3 id="运行Miner"><a href="#运行Miner" class="headerlink" title="运行Miner"></a>运行Miner</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ./nheqminer/Linux_cmake/nheqminer_cpu_xenoncat/nheqminer_cpu_xenoncat <span class="_">-l</span> YOUR_MINE_POOL_URL -u YOUR_MINE_USERNAME -p YOUR_MINE_PASSWORD</div></pre></td></tr></table></figure>
 <p>因为是动态编译，所以，如果要在其他机器上运行这个Miner，需要同时拷贝二进制文件，和依赖的动态库文件：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ scp ~/nheqminer/Linux_cmake/nheqminer_cpu_xenoncat/nheqminer_cpu_xenoncat YOUR_REMOTE_HOST:~/</div><div class="line">$ scp -r /usr/<span class="built_in">local</span>/lib YOUR_REMOTE_HOST:/usr/<span class="built_in">local</span>/lib</div></pre></td></tr></table></figure></p>
 <h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a href="https://github.com/nicehash/nheqminer/issues/173" target="_blank" rel="external">https://github.com/nicehash/nheqminer/issues/173</a></p>
@@ -571,6 +562,15 @@
                     <i class="fa fa-fw fa-weibo"></i>
                   
                   Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.douban.com/people/liuxiaohui" target="_blank" title="Douban">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Douban
                 </a>
               </span>
             
