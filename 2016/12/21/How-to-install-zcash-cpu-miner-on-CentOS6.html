@@ -94,7 +94,7 @@
 <meta property="og:site_name" content="无远弗届">
 <meta property="og:description" content="目前，Zcash钱包只有Linux版本，没有Windows版本；而能拿来开箱即用的Zcash Miner，却只有Windows版本，没有Linux版本，于是，如果想在Linux上挖矿，就只好自己编译了。
 升级编译器1234$ wget http://people.centos.org/tru/devtools-2/devtools-2.repo -O /etc/yum.repos.d/devtoo">
-<meta property="og:updated_time" content="2016-12-28T01:14:22.806Z">
+<meta property="og:updated_time" content="2016-12-28T01:21:21.604Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="How to install zcash cpu miner on CentOS6">
 <meta name="twitter:description" content="目前，Zcash钱包只有Linux版本，没有Windows版本；而能拿来开箱即用的Zcash Miner，却只有Windows版本，没有Linux版本，于是，如果想在Linux上挖矿，就只好自己编译了。
@@ -365,7 +365,7 @@
 <h3 id="安装Miner"><a href="#安装Miner" class="headerlink" title="安装Miner"></a>安装Miner</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$ git <span class="built_in">clone</span> -b Linux https://github.com/nicehash/nheqminer.git</div><div class="line">$ <span class="built_in">cd</span> nheqminer/cpu_xenoncat/Linux/asm/</div><div class="line">$ sh assemble.sh</div><div class="line">$ <span class="built_in">cd</span> ../../../Linux_cmake/nheqminer_cpu_xenoncat</div><div class="line">$ cmake .</div><div class="line">$ make -j $(nproc)</div></pre></td></tr></table></figure>
 <h3 id="运行Miner"><a href="#运行Miner" class="headerlink" title="运行Miner"></a>运行Miner</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ./nheqminer/Linux_cmake/nheqminer_cpu_xenoncat/nheqminer_cpu_xenoncat <span class="_">-l</span> YOUR_MINE_POOL_URL -u YOUR_MINE_USERNAME -p YOUR_MINE_PASSWORD</div></pre></td></tr></table></figure>
 <p>因为是动态编译，所以，如果要在其他机器上运行这个Miner，需要同时拷贝二进制文件，和依赖的动态库文件：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ scp ~/nheqminer/Linux_cmake/nheqminer_cpu_xenoncat/nheqminer_cpu_xenoncat YOUR_REMOTE_HOST:~/</div><div class="line">$ scp -r /usr/<span class="built_in">local</span>/lib YOUR_REMOTE_HOST:/usr/<span class="built_in">local</span>/lib</div></pre></td></tr></table></figure></p>
-<p>via:<a href="https://github.com/nicehash/nheqminer/issues/173" target="_blank" rel="external">https://github.com/nicehash/nheqminer/issues/173</a></p>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a href="https://github.com/nicehash/nheqminer/issues/173" target="_blank" rel="external">https://github.com/nicehash/nheqminer/issues/173</a></p>
 
       
     </div>
@@ -588,7 +588,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#升级编译器"><span class="nav-number">1.</span> <span class="nav-text">升级编译器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装Boost"><span class="nav-number">2.</span> <span class="nav-text">安装Boost</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装Miner"><span class="nav-number">3.</span> <span class="nav-text">安装Miner</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#运行Miner"><span class="nav-number">4.</span> <span class="nav-text">运行Miner</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#升级编译器"><span class="nav-number">1.</span> <span class="nav-text">升级编译器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装Boost"><span class="nav-number">2.</span> <span class="nav-text">安装Boost</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装Miner"><span class="nav-number">3.</span> <span class="nav-text">安装Miner</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#运行Miner"><span class="nav-number">4.</span> <span class="nav-text">运行Miner</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Reference"><span class="nav-number">5.</span> <span class="nav-text">Reference</span></a></li></ol></div>
             
           </div>
         </section>
